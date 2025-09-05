@@ -1,0 +1,728 @@
+@import url('https://fonts.googleapis.com/css2?family=Lato:wght@700&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap');
+
+:root {
+    --var1: 0;
+    --var2: 0;
+    --color1: rgb(119, 255, 160);
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    font-family: 'Roboto', sans-serif;
+    box-sizing: border-box;
+}
+
+body, html {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    overflow: auto;
+}
+
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    background: linear-gradient(135deg, #ffecd2 0%, #fcb69f 100%);
+    animation: birthday-bg 10s ease-in-out infinite alternate;
+    overflow-x: hidden;
+    padding: 20px;
+}
+
+@keyframes birthday-bg {
+    0% { background: linear-gradient(135deg, #ffecd2 0%, #fcb69f 100%); }
+    25% { background: linear-gradient(135deg, #f9d423 0%, #ff4e50 100%); }
+    50% { background: linear-gradient(135deg, #ffaf7b 0%, #d76d77 100%); }
+    75% { background: linear-gradient(135deg, #43cea2 0%, #185a9d 100%); }
+    100% { background: linear-gradient(135deg, #ffecd2 0%, #fcb69f 100%); }
+}
+
+.emojis {
+    display: flex;
+    justify-content: space-around;
+    width: 100%;
+    position: absolute;
+    top: -30px;
+    background-color: transparent;
+}
+
+.emojis img,
+.emojis1 img {
+    background-color: transparent !important;
+}
+
+.emojis1 {
+    position: relative;
+    animation: e1 18s ease 0s infinite forwards;
+}
+.emojis2 {
+    position: relative;
+    animation: e1 18s ease 1s infinite forwards;
+}
+.emojis3 {
+    position: relative;
+    animation: e1 18s ease 3s infinite forwards;
+}
+
+@keyframes e1 {
+    from {
+        top: -5vh;
+    }
+
+    to {
+        top: 100vh;
+    }
+}
+
+.main {
+    min-height: 100vh;
+    height: auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+    position: relative;
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px 0;
+}
+
+.card {
+    width: 100%;
+    max-width: 420px;
+    min-height: 420px;
+    padding: 24px 16px;
+    margin: 16px auto;
+    background: linear-gradient(135deg, #f9d423 0%, #ff4e50 100%);
+    border-radius: 24px;
+    box-shadow: 0 8px 32px rgba(255, 78, 80, 0.18), 0 2px 8px rgba(249, 212, 35, 0.12);
+    border: 2px solid #fff6e0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    transition: box-shadow 0.3s, background 0.3s;
+}
+.card::before {
+    content: "";
+    position: absolute;
+    top: -10px; left: -10px; right: -10px; bottom: -10px;
+    border-radius: 28px;
+    background: linear-gradient(90deg, #ffaf7b 0%, #d76d77 100%);
+    opacity: 0.12;
+    z-index: 0;
+}
+.card > * {
+    position: relative;
+    z-index: 1;
+}
+
+.birthday-message {
+    text-align: center;
+    font-size: 1.2em;
+    font-weight: 600;
+    color: #ffffff;
+    margin: 10px;
+    line-height: 1.4;
+}
+
+.content {
+    width: 100%;
+}
+
+#timer {
+    background: linear-gradient(90deg, #43cea2 0%, #185a9d 100%);
+    text-align: center;
+    border-radius: 24px;
+    font-size: 18px;
+    padding: 8px;
+    font-weight: 800;
+    color: rgb(255, 2, 2);
+    margin: 10px 0;
+    width: 100%;
+}
+
+.line {
+    text-align: center;
+    font-size: 22px;
+    font-weight: 800;
+    color: rgb(255, 94, 247);
+    margin: 8px 0;
+    line-height: 1.3;
+}
+
+.photo {
+    background-color: transparent;
+    text-align: center;
+    margin-bottom: 15px;
+}
+
+.photo img {
+    background-color: transparent;
+    width: 200px;
+    height: 200px;
+    border-radius: 50%;
+    outline: 4px solid white;
+    box-shadow: 0px 0px 12px 8px rgb(4, 130, 119);
+    margin: 8px;
+}
+
+#emoji-container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  pointer-events: none;
+  z-index: 9999;
+}
+.emoji {
+  position: absolute;
+  font-size: 1.8rem;
+  will-change: transform;
+  pointer-events: none;
+}
+
+.birthday-line {
+    text-align: center;
+    margin: 8px 0;
+    font-size: 1.8rem;
+    font-weight: 700;
+    font-family: 'Lato', 'Roboto', sans-serif;
+    transition: color 0.5s;
+}
+.line-text {
+    display: inline-block;
+    padding: 6px 18px;
+    border-radius: 24px;
+    background: linear-gradient(90deg, #f9d423 0%, #ff4e50 100%);
+    color: #fff;
+    box-shadow: 0 2px 10px rgba(255, 78, 80, 0.15);
+    font-size: 1.1em;
+    font-family: 'Lato', 'Roboto', sans-serif;
+    margin: 4px 0;
+    animation: pop 0.6s;
+    line-height: 1.4;
+    max-width: 100%;
+    overflow-wrap: break-word;
+}
+@keyframes pop {
+    0% { transform: scale(0.8); opacity: 0.5; }
+    60% { transform: scale(1.1); opacity: 1; }
+    100% { transform: scale(1); }
+}
+
+#birthday-line1 .line-text {
+    background: linear-gradient(90deg, #43cea2 0%, #185a9d 100%);
+}
+#birthday-line2 .line-text {
+    background: linear-gradient(90deg, #ffaf7b 0%, #d76d77 100%);
+}
+#birthday-line3 .line-text {
+    background: linear-gradient(90deg, #f7971e 0%, #ffd200 100%);
+}
+
+.surprise-btn {
+    display: block;
+    margin: 0 auto;
+    padding: 12px 24px;
+    font-size: 1.2em;
+    font-weight: 700;
+    color: #fff;
+    background: linear-gradient(90deg, #ffaf7b 0%, #d76d77 100%);
+    border: none;
+    border-radius: 28px;
+    box-shadow: 0 4px 20px rgba(255, 78, 80, 0.18), 0 2px 6px rgba(249, 212, 35, 0.12);
+    cursor: pointer;
+    transition: background 0.3s, transform 0.2s;
+    outline: none;
+    letter-spacing: 1px;
+    animation: pop 0.8s;
+    max-width: 90vw;
+    width: 100%;
+    box-sizing: border-box;
+}
+.surprise-btn:hover {
+    background: linear-gradient(90deg, #f7971e 0%, #ffd200 100%);
+    transform: scale(1.02);
+}
+
+.card-message{
+    color: #ffffff;
+    font-size: 1em;
+    line-height: 1.5;
+    text-align: center;
+    padding: 0 10px;
+}
+
+.left-card {
+    display: none;
+    max-width: 420px;
+    min-height: 420px;
+    padding: 24px 16px;
+    background: linear-gradient(135deg, #ffaf7b 0%, #d76d77 100%);
+    border-radius: 24px;
+    box-shadow: 0 8px 32px rgba(255, 78, 80, 0.18), 0 2px 8px rgba(249, 212, 35, 0.12);
+    border: 2px solid #fff6e0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    transition: box-shadow 0.3s, background 0.3s, transform 1s cubic-bezier(.68,-0.55,.27,1.55);
+    perspective: 1200px;
+    overflow: hidden;
+    opacity: 0;
+    transform: rotateY(180deg) scale(0.8);
+    width: 100%;
+}
+.left-card.show {
+    display: flex;
+    opacity: 1;
+    transform: rotateY(0deg) scale(1);
+}
+
+.third-card {
+    display: none;
+    max-width: 420px;
+    min-height: 420px;
+    padding: 24px 16px;
+    background: linear-gradient(135deg, #43cea2 0%, #185a9d 100%);
+    border-radius: 24px;
+    box-shadow: 0 8px 32px rgba(33, 150, 243, 0.18), 0 2px 8px rgba(249, 212, 35, 0.12);
+    border: 2px solid #fff6e0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    transition: box-shadow 0.3s, background 0.3s, transform 1s cubic-bezier(.68,-0.55,.27,1.55);
+    perspective: 1200px;
+    overflow: hidden;
+    opacity: 0;
+    transform: rotateY(180deg) scale(0.8);
+    width: 100%;
+}
+.third-card.show {
+    display: flex;
+    opacity: 1;
+    transform: rotateY(0deg) scale(1);
+}
+
+.final-messages {
+    position: fixed;
+    left: 0;
+    bottom: 70px;
+    width: 100vw;
+    text-align: center;
+    color: #fff;
+    font-size: 1.2em;
+    font-weight: 600;
+    line-height: 1.4;
+    z-index: 10;
+    pointer-events: none;
+    margin-top: 0;
+    padding: 15px 0 10px 0;
+    border-radius: 20px;
+    box-shadow: 0 4px 20px rgba(255, 78, 80, 0.18);
+    background: none;
+}
+.final-messages.show-gradient {
+    background: linear-gradient(90deg, #ffaf7b 0%, #d76d77 100%);
+}
+.final-message {
+    background-color: gradient(#ffaf7b, #d76d77);
+    color: black;
+    margin: 8px 0;
+    font-size: 1.1em;
+    font-weight: 600;
+    letter-spacing: 1px;
+    animation: pop 0.7s;
+    padding: 0 10px;
+    line-height: 1.4;
+}
+#final-message {
+    background-color: gradient(#ffaf7b, #d76d77);
+    color: black;
+}
+#final-surprise-btn-container {
+    position: fixed;
+    left: 0;
+    bottom: 12px;
+    width: 100vw;
+    text-align: center;
+    z-index: 10;
+    margin-top: 0;
+    padding: 0 10px;
+}
+.final-surprise-btn {
+    display: inline-block;
+    margin: 20px auto 0 auto;
+    padding: 16px 36px;
+    font-size: 1.4em;
+    font-weight: 700;
+    color: #fff;
+    background: linear-gradient(90deg, #ffaf7b 0%, #d76d77 100%);
+    border: none;
+    border-radius: 28px;
+    box-shadow: 0 4px 20px rgba(255, 78, 80, 0.18), 0 2px 6px rgba(249, 212, 35, 0.12);
+    cursor: pointer;
+    transition: background 0.3s, transform 0.2s;
+    outline: none;
+    letter-spacing: 1px;
+    animation: pop 0.8s;
+    max-width: 90vw;
+    box-sizing: border-box;
+    width: auto;
+}
+.final-surprise-btn:hover {
+    background: linear-gradient(90deg, #f7971e 0%, #ffd200 100%);
+    transform: scale(1.04);
+}
+.final-surprise-btn {
+    margin-top: 25px;
+    padding: 16px 36px;
+    font-size: 1.5em;
+    font-weight: 700;
+    color: #fff;
+    background: linear-gradient(90deg, #43cea2 0%, #185a9d 100%);
+    border: none;
+    border-radius: 28px;
+    box-shadow: 0 4px 20px rgba(33,150,243,0.18), 0 2px 6px rgba(249,212,35,0.12);
+    cursor: pointer;
+    transition: all 0.3s ease;
+    outline: none;
+    letter-spacing: 1px;
+    display: block;
+    margin: 25px auto 0 auto;
+}
+
+.final-surprise-btn:hover {
+    background: linear-gradient(90deg, #ffaf7b 0%, #d76d77 100%);
+    transform: scale(1.04);
+    box-shadow: 0 6px 24px rgba(255,78,80,0.22), 0 3px 8px rgba(249,212,35,0.15);
+}
+
+.final-surprise-btn:active {
+    transform: scale(0.98);
+}
+
+/* Media Queries for Responsiveness */
+
+/* For laptop screens (1366x768) */
+@media screen and (max-width: 1366px) and (min-height: 700px) {
+    .main {
+        gap: 15px;
+        padding: 15px 0;
+    }
+    
+    .card {
+        max-width: 380px;
+        min-height: 380px;
+        padding: 20px 14px;
+        margin: 12px auto;
+    }
+    
+    .photo img {
+        width: 180px;
+        height: 180px;
+    }
+    
+    .birthday-message {
+        font-size: 1.1em;
+    }
+    
+    #timer {
+        font-size: 16px;
+        padding: 6px;
+    }
+    
+    .line {
+        font-size: 20px;
+    }
+    
+    .line-text {
+        font-size: 1em;
+        padding: 5px 15px;
+    }
+}
+
+/* For mobile screens (Redmi Note 9: 1080x2340) */
+@media screen and (max-width: 1080px) {
+    body {
+        padding: 15px;
+    }
+    
+    .main {
+        gap: 12px;
+        padding: 12px 0;
+    }
+    
+    .card {
+        max-width: 340px;
+        min-height: 340px;
+        padding: 18px 12px;
+        margin: 10px auto;
+        border-radius: 20px;
+    }
+    
+    .photo img {
+        width: 160px;
+        height: 160px;
+        outline: 3px solid white;
+        box-shadow: 0px 0px 10px 6px rgb(4, 130, 119);
+    }
+    
+    .birthday-message {
+        font-size: 1em;
+        margin: 8px;
+    }
+    
+    #timer {
+        font-size: 14px;
+        padding: 5px;
+        border-radius: 20px;
+    }
+    
+    .line {
+        font-size: 18px;
+        margin: 6px 0;
+    }
+    
+    .line-text {
+        font-size: 0.95em;
+        padding: 4px 12px;
+    }
+    
+    .surprise-btn {
+        padding: 10px 20px;
+        font-size: 1.1em;
+        border-radius: 24px;
+    }
+    
+    .card-message {
+        font-size: 0.9em;
+        padding: 0 8px;
+    }
+    
+    .final-messages {
+        bottom: 60px;
+        font-size: 1.1em;
+        padding: 12px 0 8px 0;
+    }
+    
+    .final-message {
+        font-size: 1em;
+        margin: 6px 0;
+    }
+    
+    #final-surprise-btn-container {
+        bottom: 10px;
+    }
+    
+    .final-surprise-btn {
+        padding: 14px 30px;
+        font-size: 1.3em;
+        margin: 20px auto 0 auto;
+    }
+}
+
+/* For smaller mobile screens */
+@media screen and (max-width: 480px) {
+    body {
+        padding: 10px;
+    }
+    
+    .main {
+        gap: 10px;
+        padding: 10px 0;
+    }
+    
+    .card {
+        max-width: 300px;
+        min-height: 300px;
+        padding: 16px 10px;
+        margin: 8px auto;
+        border-radius: 18px;
+    }
+    
+    .card::before {
+        top: -8px; 
+        left: -8px; 
+        right: -8px; 
+        bottom: -8px;
+        border-radius: 22px;
+    }
+    
+    .photo img {
+        width: 140px;
+        height: 140px;
+        outline: 2px solid white;
+        box-shadow: 0px 0px 8px 4px rgb(4, 130, 119);
+        margin: 6px;
+    }
+    
+    .birthday-message {
+        font-size: 0.95em;
+        margin: 6px;
+    }
+    
+    #timer {
+        font-size: 12px;
+        padding: 4px;
+        border-radius: 18px;
+    }
+    
+    .line {
+        font-size: 16px;
+        margin: 5px 0;
+    }
+    
+    .line-text {
+        font-size: 0.9em;
+        padding: 3px 10px;
+    }
+    
+    .final-messages {
+        bottom: 50px;
+        font-size: 1em;
+        padding: 10px 0 6px 0;
+    }
+    
+    .final-message {
+        font-size: 0.95em;
+        margin: 5px 0;
+    }
+    
+    #final-surprise-btn-container {
+        bottom: 8px;
+    }
+    
+    .final-surprise-btn {
+        padding: 12px 24px;
+        font-size: 1.2em;
+        margin: 15px auto 0 auto;
+        border-radius: 24px;
+    }
+}
+
+/* For tall mobile screens like Redmi Note 9 (1080x2340) */
+@media screen and (max-width: 1080px) and (min-height: 2000px) {
+    body {
+        padding: 25px;
+    }
+    
+    .main {
+        gap: 20px;
+        padding: 20px 0;
+    }
+    
+    .card {
+        max-width: 400px;
+        min-height: 400px;
+        padding: 22px 16px;
+        margin: 15px auto;
+    }
+    
+    .photo img {
+        width: 180px;
+        height: 180px;
+    }
+    
+    .birthday-message {
+        font-size: 1.3em;
+    }
+    
+    #timer {
+        font-size: 18px;
+    }
+    
+    .line {
+        font-size: 22px;
+    }
+    
+    .final-messages {
+        bottom: 90px;
+        font-size: 1.4em;
+    }
+    
+    .final-surprise-btn {
+        padding: 18px 40px;
+        font-size: 1.6em;
+        margin: 30px auto 0 auto;
+    }
+}
+
+/* Landscape orientation adjustments */
+@media screen and (max-height: 500px) and (orientation: landscape) {
+    body {
+        padding: 10px;
+        overflow-y: auto;
+    }
+    
+    .main {
+        min-height: auto;
+        flex-direction: row;
+        flex-wrap: wrap;
+        gap: 15px;
+        padding: 10px 0;
+    }
+    
+    .card {
+        max-width: 300px;
+        min-height: 280px;
+        padding: 12px 10px;
+        margin: 8px auto;
+    }
+    
+    .photo img {
+        width: 100px;
+        height: 100px;
+    }
+    
+    .birthday-message {
+        font-size: 0.9em;
+        margin: 5px;
+    }
+    
+    #timer {
+        font-size: 12px;
+        padding: 4px;
+    }
+    
+    .line {
+        font-size: 14px;
+        margin: 4px 0;
+    }
+    
+    .final-messages {
+        position: relative;
+        bottom: auto;
+        margin-top: 15px;
+    }
+    
+    #final-surprise-btn-container {
+        position: relative;
+        bottom: auto;
+        margin-top: 15px;
+    }
+}
+
+/* For desktop screens larger than 1366px */
+@media screen and (min-width: 1367px) {
+    .main {
+        flex-direction: row;
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 25px;
+    }
+    
+    .card {
+        margin: 15px;
+    }
+}

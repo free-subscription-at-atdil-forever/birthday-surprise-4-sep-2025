@@ -1,0 +1,36 @@
+{
+  "songs/A Special Birthday Surprise": {
+    "files": [
+      "Birthday Voice note.mp3"
+    ],
+    "info": {
+      "title": "Birthday Special",
+      "description": "Special birthday songs for you!",
+      "cover": "songs/A Special Birthday Surprise/cover.jpg"
+    }
+  },
+  "songs/A Your Birthday Songs": {
+    "files": [
+      "Atika Meri Jaan .mp3",
+      "Meri Jaan Atika.mp3"
+    ],
+    "info": {
+      "title": "Your Birthday Songs",
+      "description": "Wonderful birthday collection",
+      "cover": "songs/A Your Birthday Songs/cover.jpg"
+    }
+  },
+  "songs/pashto": {
+    "files": [
+      "DA ZRA GHAMUNA.mp3",
+      "Che Jahan Tyara Tyara She Ghani Khan Poetry.mp3",
+      "Charta Ye - Ay Husan darey - Slow_Reverb Pashto song - Tiktok viral song slow version - اے حسن داری.mp3"
+    ],
+    "info": {
+      "title": "Pashto Songs",
+      "description": "Beautiful Pashto music",
+      "cover": "songs/pashto/cover.jpg"
+    }
+  }
+
+}
