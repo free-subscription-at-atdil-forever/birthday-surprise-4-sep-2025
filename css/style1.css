@@ -133,6 +133,9 @@ body {
 
 .content {
     width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
 #timer {
@@ -154,6 +157,7 @@ body {
     color: rgb(255, 94, 247);
     margin: 8px 0;
     line-height: 1.3;
+    width: 100%;
 }
 
 .photo {
@@ -260,11 +264,19 @@ body {
     padding: 0 10px;
 }
 
+/* Side cards styling */
+.side-card {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    z-index: 5;
+    width: 90%;
+    max-width: 380px;
+}
+
 .left-card {
     display: none;
-    max-width: 420px;
-    min-height: 420px;
-    padding: 24px 16px;
+    left: -100%;
     background: linear-gradient(135deg, #ffaf7b 0%, #d76d77 100%);
     border-radius: 24px;
     box-shadow: 0 8px 32px rgba(255, 78, 80, 0.18), 0 2px 8px rgba(249, 212, 35, 0.12);
@@ -273,25 +285,27 @@ body {
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    position: relative;
-    transition: box-shadow 0.3s, background 0.3s, transform 1s cubic-bezier(.68,-0.55,.27,1.55);
+    position: absolute;
+    transition: all 1s cubic-bezier(.68,-0.55,.27,1.55);
     perspective: 1200px;
     overflow: hidden;
     opacity: 0;
-    transform: rotateY(180deg) scale(0.8);
-    width: 100%;
+    transform: translateY(-50%) rotateY(180deg) scale(0.8);
+    width: 90%;
+    max-width: 380px;
+    min-height: 380px;
+    padding: 20px;
 }
 .left-card.show {
     display: flex;
     opacity: 1;
-    transform: rotateY(0deg) scale(1);
+    left: 5%;
+    transform: translateY(-50%) rotateY(0deg) scale(1);
 }
 
 .third-card {
     display: none;
-    max-width: 420px;
-    min-height: 420px;
-    padding: 24px 16px;
+    right: -100%;
     background: linear-gradient(135deg, #43cea2 0%, #185a9d 100%);
     border-radius: 24px;
     box-shadow: 0 8px 32px rgba(33, 150, 243, 0.18), 0 2px 8px rgba(249, 212, 35, 0.12);
@@ -300,18 +314,26 @@ body {
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    position: relative;
-    transition: box-shadow 0.3s, background 0.3s, transform 1s cubic-bezier(.68,-0.55,.27,1.55);
+    position: absolute;
+    transition: all 1s cubic-bezier(.68,-0.55,.27,1.55);
     perspective: 1200px;
     overflow: hidden;
     opacity: 0;
-    transform: rotateY(180deg) scale(0.8);
-    width: 100%;
+    transform: translateY(-50%) rotateY(180deg) scale(0.8);
+    width: 90%;
+    max-width: 380px;
+    min-height: 380px;
+    padding: 20px;
 }
 .third-card.show {
     display: flex;
     opacity: 1;
-    transform: rotateY(0deg) scale(1);
+    right: 5%;
+    transform: translateY(-50%) rotateY(0deg) scale(1);
+}
+
+.hidden-card {
+    display: none;
 }
 
 .final-messages {
@@ -412,10 +434,69 @@ body {
     transform: scale(0.98);
 }
 
+/* Cards container for responsive layout */
+.cards-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 30px;
+    width: 100%;
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 20px;
+    flex-wrap: wrap;
+    min-height: 500px;
+    position: relative;
+}
+
+/* Individual card styling for the three cards */
+.story-card {
+    width: 100%;
+    max-width: 400px;
+    min-width: 300px;
+    min-height: 450px;
+    padding: 20px;
+    background: linear-gradient(135deg, #43cea2 0%, #185a9d 100%);
+    border-radius: 24px;
+    box-shadow: 0 8px 32px rgba(33, 150, 243, 0.18), 0 2px 8px rgba(249, 212, 35, 0.12);
+    border: 2px solid #fff6e0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    position: relative;
+    transition: all 0.3s ease;
+}
+
+.story-card:nth-child(2) {
+    background: linear-gradient(135deg, #ffaf7b 0%, #d76d77 100%);
+}
+
+.story-card:nth-child(3) {
+    background: linear-gradient(135deg, #f9d423 0%, #ff4e50 100%);
+}
+
+.story-card img {
+    width: 100%;
+    max-width: 300px;
+    height: auto;
+    border-radius: 16px;
+    box-shadow: 0 4px 24px rgba(0, 0, 0, 0.18);
+    margin-bottom: 15px;
+}
+
+.story-card .card-message {
+    color: #ffffff;
+    font-size: 1em;
+    line-height: 1.5;
+    text-align: center;
+    padding: 0 10px;
+}
+
 /* Media Queries for Responsiveness */
 
 /* For laptop screens (1366x768) */
-@media screen and (max-width: 1366px) and (min-height: 700px) {
+@media screen and (max-width: 3000px) {
     .main {
         gap: 15px;
         padding: 15px 0;
@@ -426,6 +507,15 @@ body {
         min-height: 380px;
         padding: 20px 14px;
         margin: 12px auto;
+    }
+    
+    .side-card {
+        max-width: 340px;
+    }
+    
+    .left-card, .third-card {
+        max-width: 340px;
+        min-height: 340px;
     }
     
     .photo img {
@@ -450,6 +540,16 @@ body {
         font-size: 1em;
         padding: 5px 15px;
     }
+    
+    .cards-container {
+        gap: 20px;
+        padding: 15px;
+    }
+    
+    .story-card {
+        max-width: 350px;
+        min-height: 420px;
+    }
 }
 
 /* For mobile screens (Redmi Note 9: 1080x2340) */
@@ -469,6 +569,24 @@ body {
         padding: 18px 12px;
         margin: 10px auto;
         border-radius: 20px;
+    }
+    
+    .side-card {
+        max-width: 300px;
+    }
+    
+    .left-card, .third-card {
+        max-width: 300px;
+        min-height: 320px;
+        padding: 16px;
+    }
+    
+    .left-card.show {
+        left: 2%;
+    }
+    
+    .third-card.show {
+        right: 2%;
     }
     
     .photo img {
@@ -530,6 +648,19 @@ body {
         font-size: 1.3em;
         margin: 20px auto 0 auto;
     }
+    
+    .cards-container {
+        flex-wrap: wrap;
+        overflow-x: visible;
+        gap: 25px;
+    }
+    
+    .story-card {
+        max-width: 100%;
+        min-width: 280px;
+        min-height: auto;
+        margin-bottom: 20px;
+    }
 }
 
 /* For smaller mobile screens */
@@ -549,6 +680,16 @@ body {
         padding: 16px 10px;
         margin: 8px auto;
         border-radius: 18px;
+    }
+    
+    .side-card {
+        max-width: 280px;
+    }
+    
+    .left-card, .third-card {
+        max-width: 280px;
+        min-height: 300px;
+        padding: 14px;
     }
     
     .card::before {
@@ -609,6 +750,24 @@ body {
         margin: 15px auto 0 auto;
         border-radius: 24px;
     }
+    
+    .cards-container {
+        padding: 5px;
+        gap: 15px;
+    }
+    
+    .story-card {
+        padding: 15px;
+        min-height: auto;
+    }
+    
+    .story-card img {
+        max-width: 200px;
+    }
+    
+    .story-card .card-message {
+        font-size: 0.9em;
+    }
 }
 
 /* For tall mobile screens like Redmi Note 9 (1080x2340) */
@@ -627,6 +786,15 @@ body {
         min-height: 400px;
         padding: 22px 16px;
         margin: 15px auto;
+    }
+    
+    .side-card {
+        max-width: 360px;
+    }
+    
+    .left-card, .third-card {
+        max-width: 360px;
+        min-height: 380px;
     }
     
     .photo img {
@@ -656,6 +824,11 @@ body {
         font-size: 1.6em;
         margin: 30px auto 0 auto;
     }
+    
+    .cards-container {
+        max-height: 1600px;
+        overflow-y: auto;
+    }
 }
 
 /* Landscape orientation adjustments */
@@ -678,6 +851,28 @@ body {
         min-height: 280px;
         padding: 12px 10px;
         margin: 8px auto;
+    }
+    
+    .side-card {
+        position: relative;
+        top: auto;
+        transform: none;
+        margin: 8px auto;
+    }
+    
+    .left-card, .third-card {
+        position: relative;
+        top: auto;
+        transform: none;
+        margin: 8px auto;
+        left: auto;
+        right: auto;
+    }
+    
+    .left-card.show, .third-card.show {
+        left: auto;
+        right: auto;
+        transform: rotateY(0deg) scale(1);
     }
     
     .photo img {
@@ -711,6 +906,20 @@ body {
         bottom: auto;
         margin-top: 15px;
     }
+    
+    .cards-container {
+        flex-direction: row;
+        overflow-x: auto;
+        padding: 10px 5px;
+    }
+    
+    .story-card {
+        min-width: 280px;
+        max-width: 280px;
+        min-height: 380px;
+        margin-bottom: 0;
+        margin-right: 15px;
+    }
 }
 
 /* For desktop screens larger than 1366px */
@@ -724,5 +933,53 @@ body {
     
     .card {
         margin: 15px;
+    }
+    
+    .side-card {
+        position: relative;
+        top: auto;
+        transform: none;
+        margin: 15px;
+    }
+    
+    .left-card, .third-card {
+        position: relative;
+        top: auto;
+        transform: none;
+        margin: 15px;
+        left: auto;
+        right: auto;
+    }
+    
+    .left-card.show, .third-card.show {
+        left: auto;
+        right: auto;
+        transform: rotateY(0deg) scale(1);
+    }
+    
+    .cards-container {
+        flex-direction: row;
+        flex-wrap: nowrap;
+        justify-content: center;
+        align-items: stretch;
+    }
+}
+
+@media screen and (max-width: 768px) {
+    .cards-container {
+        flex-direction: column;
+        align-items: center;
+        padding: 10px;
+    }
+    
+    .story-card {
+        width: 100%;
+        max-width: 100%;
+        min-height: auto;
+        margin-bottom: 25px;
+    }
+    
+    .story-card img {
+        max-width: 250px;
     }
 }
